@@ -1,29 +1,34 @@
-package com.example.fullstack26back.controller;
+package com.example.FullStack_26_Back.Controlador;
 
-import com.example.fullstack26back.dto.ApiResponse;
-import com.example.fullstack26back.dto.LoginRequest;
-import com.example.fullstack26back.dto.RegisterRequest;
-import com.example.fullstack26back.dto.UserResponse;
-import com.example.fullstack26back.service.UserService;
+import com.example.FullStack_26_Back.DTO.ApiResponse;
+import com.example.FullStack_26_Back.DTO.Login;
+import com.example.FullStack_26_Back.DTO.Registro;
+import com.example.FullStack_26_Back.DTO.UserResponse;
+import com.example.FullStack_26_Back.Servicios.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Endpoints públicos de autenticación.
+ *
+ * POST /api/auth/register  → Registra un comprador (siempre USER)
+ * POST /api/auth/login     → Login para compradores Y para el admin
+ */
 @RestController
 @RequestMapping("/api/auth")
-public class AuthController {
+public class AutenticacionController {
 
     private final UserService userService;
 
-    public AuthController(UserService userService) {
+    public AutenticacionController(UserService userService) {
         this.userService = userService;
     }
 
-
     @PostMapping("/register")
     public ResponseEntity<ApiResponse<UserResponse>> register(
-            @Valid @RequestBody RegisterRequest request) {
+            @Valid @RequestBody Registro request) {
 
         UserResponse user = userService.register(request);
         return ResponseEntity
@@ -33,7 +38,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<ApiResponse<UserResponse>> login(
-            @Valid @RequestBody LoginRequest request) {
+            @Valid @RequestBody Login request) {
 
         UserResponse user = userService.login(request);
         return ResponseEntity.ok(ApiResponse.ok("Login exitoso", user));

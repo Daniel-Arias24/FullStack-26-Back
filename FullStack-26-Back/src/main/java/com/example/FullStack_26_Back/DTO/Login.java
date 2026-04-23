@@ -1,4 +1,4 @@
-package com.example.fullstack26back.dto;
+package com.example.FullStack_26_Back.DTO;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
