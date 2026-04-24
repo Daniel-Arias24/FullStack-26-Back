@@ -1,4 +1,4 @@
-package com.example.fullstack26back.dto;
+package com.example.FullStack_26_Back.DTO;
 
 public class ApiResponse<T> {
 

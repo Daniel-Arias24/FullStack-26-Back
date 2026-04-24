@@ -1,6 +1,6 @@
-package com.example.fullstack26back.dto;
+package com.example.FullStack_26_Back.DTO;
 
-import com.example.fullstack26back.model.User;
+import com.example.FullStack_26_Back.Modelo.User;
 import java.time.LocalDateTime;
 
 public class UserResponse {
@@ -11,7 +11,6 @@ public class UserResponse {
     private String role;
     private LocalDateTime createdAt;
 
-    // Constructor desde entidad (nunca expone el password)
     public UserResponse(User user) {
         this.id        = user.getId();
         this.name      = user.getName();
