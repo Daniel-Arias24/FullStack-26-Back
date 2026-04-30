@@ -1,4 +1,4 @@
-package com.example.fullstack26back.model;
+package com.example.FullStack_26_Back.Modelo;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -24,8 +24,12 @@ public class User {
 
     @NotBlank(message = "La contraseña es obligatoria")
     @Column(nullable = false)
-    private String password;
+    private String password; // almacenado como hash BCrypt
 
+    /**
+     * USER  → comprador (se registra desde el formulario de la tienda)
+     * ADMIN → vendedor  (se registra desde el popup de admin)
+     */
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role = Role.USER;
@@ -38,12 +42,8 @@ public class User {
         this.createdAt = LocalDateTime.now();
     }
 
-    // ── Enum de roles ─────────────────────────────────────────
-    public enum Role {
-        USER, ADMIN
-    }
+    public enum Role { USER, ADMIN }
 
-    // ── Constructores ─────────────────────────────────────────
     public User() {}
 
     public User(String name, String email, String password, Role role) {
@@ -53,21 +53,20 @@ public class User {
         this.role     = role;
     }
 
-    // ── Getters y Setters ─────────────────────────────────────
-    public Long getId()                    { return id; }
-    public void setId(Long id)             { this.id = id; }
+    public Long          getId()                      { return id; }
+    public void          setId(Long id)               { this.id = id; }
 
-    public String getName()                { return name; }
-    public void setName(String name)       { this.name = name; }
+    public String        getName()                    { return name; }
+    public void          setName(String name)         { this.name = name; }
 
-    public String getEmail()               { return email; }
-    public void setEmail(String email)     { this.email = email; }
+    public String        getEmail()                   { return email; }
+    public void          setEmail(String email)       { this.email = email; }
 
-    public String getPassword()            { return password; }
-    public void setPassword(String password) { this.password = password; }
+    public String        getPassword()                { return password; }
+    public void          setPassword(String password) { this.password = password; }
 
-    public Role getRole()                  { return role; }
-    public void setRole(Role role)         { this.role = role; }
+    public Role          getRole()                    { return role; }
+    public void          setRole(Role role)           { this.role = role; }
 
-    public LocalDateTime getCreatedAt()    { return createdAt; }
+    public LocalDateTime getCreatedAt()               { return createdAt; }
 }

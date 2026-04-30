@@ -1,6 +1,6 @@
-package com.example.fullstack26back.exception;
+package com.example.FullStack_26_Back.Excepcion;
 
-import com.example.fullstack26back.dto.ApiResponse;
+import com.example.FullStack_26_Back.DTO.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -27,7 +27,7 @@ public class GlobalExceptionHandler {
                 .body(ApiResponse.error(errors));
     }
 
-    // Errores de negocio (email duplicado, credenciales incorrectas, etc.)
+    // Errores de negocio (email duplicado, credenciales incorrectas…)
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<ApiResponse<Void>> handleIllegalArgument(
             IllegalArgumentException ex) {

@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Endpoints públicos de autenticación.
  *
- * POST /api/auth/register  → Registra un comprador (siempre USER)
- * POST /api/auth/login     → Login para compradores Y para el admin
+ * POST /api/auth/register  → Registra un nuevo comprador (rol USER)
+ * POST /api/auth/login     → Login para compradores y admin
+ *                            La respuesta incluye "role": "USER" o "ADMIN"
+ *                            para que el front sepa a dónde redirigir.
  */
 @RestController
 @RequestMapping("/api/auth")
@@ -29,7 +31,6 @@ public class AutenticacionController {
     @PostMapping("/register")
     public ResponseEntity<ApiResponse<UserResponse>> register(
             @Valid @RequestBody Registro request) {
-
         UserResponse user = userService.register(request);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -39,7 +40,6 @@ public class AutenticacionController {
     @PostMapping("/login")
     public ResponseEntity<ApiResponse<UserResponse>> login(
             @Valid @RequestBody Login request) {
-
         UserResponse user = userService.login(request);
         return ResponseEntity.ok(ApiResponse.ok("Login exitoso", user));
     }

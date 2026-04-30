@@ -1,16 +1,24 @@
 package com.example.FullStack_26_Back.DTO;
 
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
-public class Login {
+/**
+ * Datos opcionales para actualizar un usuario (PUT /api/users/{id}).
+ * Solo se actualizan los campos que lleguen con valor.
+ */
+public class ActualizarUsuario {
+
+    private String name;
 
     @Email(message = "Email inválido")
-    @NotBlank(message = "El email es obligatorio")
     private String email;
 
-    @NotBlank(message = "La contraseña es obligatoria")
+    @Size(min = 6, message = "La contraseña debe tener mínimo 6 caracteres")
     private String password;
+
+    public String getName()                  { return name; }
+    public void setName(String name)         { this.name = name; }
 
     public String getEmail()                 { return email; }
     public void setEmail(String email)       { this.email = email; }
