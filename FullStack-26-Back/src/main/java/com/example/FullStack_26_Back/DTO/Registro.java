@@ -4,6 +4,11 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+/**
+ * Datos que llegan desde el formulario de registro del front.
+ * Los usuarios siempre se crean con rol USER.
+ * El admin existe desde el inicio y NO se registra por este endpoint.
+ */
 public class Registro {
 
     @NotBlank(message = "El nombre es obligatorio")
@@ -17,7 +22,7 @@ public class Registro {
     @Size(min = 6, message = "La contraseña debe tener mínimo 6 caracteres")
     private String password;
 
-    // Getters y Setters
+    // Sin campo "role": los usuarios siempre serán USER
     public String getName()                  { return name; }
     public void setName(String name)         { this.name = name; }
 

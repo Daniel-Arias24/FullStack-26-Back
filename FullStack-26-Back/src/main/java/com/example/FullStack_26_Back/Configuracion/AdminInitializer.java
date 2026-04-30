@@ -1,4 +1,4 @@
-package com.example.FullStack_26_Back.Config;
+package com.example.FullStack_26_Back.Configuracion;
 
 import com.example.FullStack_26_Back.Modelo.User;
 import com.example.FullStack_26_Back.Repositorio.UserRepository;
@@ -11,9 +11,13 @@ import org.springframework.stereotype.Component;
  * Se ejecuta automáticamente cada vez que arranca el back.
  * Crea el admin por defecto si aún no existe en la base de datos.
  *
- * Credenciales quemadas en el front hasta el momento(main.js):
+ * Credenciales quemadas en el front (main.js):
  *   Email    → sxmxel05@gmail.com
  *   Password → cesde2026
+ *
+ * Aunque las credenciales estén a la vista en el JS,
+ * en el back la contraseña se guarda hasheada con BCrypt.
+ * Si ya existe el admin (p. ej. en una BD persistente), no lo toca.
  */
 @Component
 public class AdminInitializer implements ApplicationRunner {

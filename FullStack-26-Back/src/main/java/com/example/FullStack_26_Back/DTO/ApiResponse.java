@@ -12,7 +12,6 @@ public class ApiResponse<T> {
         this.data    = data;
     }
 
-    // Factory helpers
     public static <T> ApiResponse<T> ok(String message, T data) {
         return new ApiResponse<>(true, message, data);
     }
@@ -21,7 +20,6 @@ public class ApiResponse<T> {
         return new ApiResponse<>(false, message, null);
     }
 
-    // Getters
     public boolean isSuccess()  { return success; }
     public String  getMessage() { return message; }
     public T       getData()    { return data; }
